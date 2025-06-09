@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/bootstrap.css">
+    <title>Browser Game: Blackjack</title>
+</head>
+<body>
+    <header role="banner" class="container">
+        <div class="row">
+            <h1 role="header" class="col-12 text-center">Blackjack</h1>
+        </div>
+    </header>
+    <main role="main" class="container">
+        <div class="row mt-1">
+            <div class="col-2 house">
+                <div class="hCard"></div>
+            </div>
+            <div class="col-2 house">
+                <div class="hCard"></div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2 text-center player">
+                <div class="pCard"></div>
+            </div>
+            <div class="col-2 text-center player">
+                <div class="pCard"></div>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-6 text-center pTotals">
+                <p id="pTotal"></p>
+            </div>
+            <div class="col-6 text-center">
+                <p id="hTotal"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 hit1">
+                <button id="hit">Hit</button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 stand1">
+                <button id="stand">Stand</button>
+            </div>
+        </div>
+    </main>
+    
+
+
+
+
+
+
+    <script src="./JS/app.js"></script>
+</body>
+</html>

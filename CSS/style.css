@@ -1,0 +1,6 @@
+.hCard, .pCard {
+    border: solid;
+    border-color: black;
+    width: 7rem;
+    height: 12rem;
+}
