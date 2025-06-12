@@ -12,7 +12,30 @@
 
 // Create deck of cards as an array
 function deckOfCards() {
+    let splitClicked = 0;
+    let splitClicked2 = 0;
     let deck = [];
+    let player = [];
+    let playerS1 = [];
+    let playerS2 = [];
+    let house = [];
+    let sumP = 0;
+    let sumH = 0;
+    let sumPs1 = 0;
+    let sumPs2 = 0;
+
+    let pTotals = document.querySelector('.pTotals');
+    // Call hit1 and stand1 class divs to remove buttons later
+    let hit1 = document.querySelector('.hit1');
+    let stand1 = document.querySelector('.stand1');
+
+    // Initialize pTotal and hTotal
+    let pTotal = document.getElementById('pTotal');
+    let hTotal = document.getElementById('hTotal');
+
+    // Create separate player total elements for split and append later
+    let ps1 = document.createElement("p");
+    let ps2 = document.createElement("p");
 
     let ace = 11;
     let two = 2;
@@ -72,10 +95,6 @@ function deckOfCards() {
 
     // Deal cards to player and house
     function dealPlayer(deck) {
-        let player = [];
-        let house = [];
-        let sumP = 0;
-        let sumH = 0;
         console.log(deck);
 
         // Deal to player
@@ -95,6 +114,7 @@ function deckOfCards() {
                 console.log('House:',house);
                 console.log(deck);
             }
+            hTotal.innerText = 'House: '+ house[0];
         }
         dealToHouse();
 
@@ -102,29 +122,213 @@ function deckOfCards() {
         let hit = document.getElementById('hit');
 
         hit.addEventListener("click",() => {
-            player.push(deck[0]);
-            deck.shift(0);
-            console.log('Player:',player);
-            console.log(deck);
+            
+            if(splitClicked2 > 0) {
 
-            sumPlayer();
+                playerS2.push(deck[0]);
+                deck.shift(0);
+                console.log(deck);
+                console.log('Player S1: ', playerS1, 'Player S2: ', playerS2);
+                console.log('spc2: ',splitClicked2);
+
+                splitSum2();
+
+            } else if(splitClicked > 0) {
+                
+                playerS1.push(deck[0]);
+                deck.shift(0);
+                console.log(deck);
+                console.log('Player S1: ', playerS1, 'Player S2: ', playerS2);
+
+                splitSum1();
+
+            } else {
+                player.push(deck[0]);
+                deck.shift(0);
+                console.log('Player:',player);
+                console.log(deck);
+
+
+                sumPlayer();
+            }  
         })
 
-        // Call hit1 and stand1 class divs to remove buttons later
-        let hit1 = document.querySelector('.hit1');
-        let stand1 = document.querySelector('.stand1');
+        // Split addEventListener button
+        let split = document.getElementById('split');
 
-        let pTotal = document.getElementById('pTotal');
-        let hTotal = document.getElementById('hTotal');
+        if(player[0] != player[1]) {
+            split.remove();
+        }
+
+        split.addEventListener("click",() => {
+            
+            splitClicked++
+            console.log('Split Clicked: ', splitClicked);
+
+            // Split player cards
+            playerS1.push(player[0]);
+            playerS2.push(player[0]);
+
+            if(sumPs1 < 21 && playerS1.includes(1) && playerS1.length < 1) { // .includes checks if 1 is anywhere in array
+                // Change ace value
+                let idx = playerS1.indexOf(1); // .indexOf checks the first 1 it comes across
+                if (idx !== -1) {
+                    playerS1[idx] = 11;
+                    console.log(playerS1);
+
+                    sumPs1 = 0;
+                    for (let i = 0; i < playerS1.length; i++) {
+                        sumPs1 += playerS1[i];
+                    }
+                }
+            }
+
+            if(sumPs2 < 21 && playerS2.includes(1) && playerS2.length < 1) { // .includes checks if 1 is anywhere in array
+                // Change ace value
+                let idx = playerS2.indexOf(1); // .indexOf checks the first 1 it comes across
+                if (idx !== -1) {
+                    playerS2[idx] = 11;
+                    console.log(playerS2);
+
+                    sumPs2 = 0;
+                    for (let i = 0; i < playerS2.length; i++) {
+                        sumPs2 += playerS2[i];
+                    }
+                }
+            }
+
+            console.log('Player S1: ', playerS1, 'Player S2: ', playerS2);
+
+            pTotal.remove();
+
+
+            pTotals.appendChild(ps1);
+            pTotals.appendChild(ps2);
+            
+            ps2.classList.add = 'ms-1';;
+            // pTotals.classList.remove = 'col-6';
+            ps1.innerText = 'P1: '+ playerS1[0];
+            ps2.innerText = 'P2: '+ playerS2[0];
+            splitSum1();
+        })
 
         // Stand eventListenerButton
         let stand = document.getElementById('stand');
 
         stand.addEventListener("click",() => {
             //debugger
-            console.log(sumP);
-            sumHouse(sumP);
+            if(splitClicked2 > 0) {
+                console.log("P1: ",sumPs1,"P2: ", sumPs2);
+                sumHouseSplit(sumPs1, sumPs2);
+
+            } else if(splitClicked > 0) {
+                splitSum2();
+
+            } else {
+                console.log(sumP);
+                sumHouse(sumP);
+            }
         });
+
+
+        // Sum of sumPs1 and sumPs2 arrays when split
+
+        function splitSum1() {
+            
+            if(splitClicked > 0) {
+            split.remove();
+            }
+
+            sumPs1 = 0;
+
+            for(let i = 0; i < playerS1.length; i++) {
+                
+                sumPs1 += playerS1[i];
+
+                ps1.innerText = 'P1: ' + sumPs1;
+
+                if(sumPs1 == 21) {
+                    console.log('P1: You Win!', sumPs1);
+                    ps1.innerText = 'P1: Blackjack! ' + sumPs1;
+                    return sumPs1;
+
+                } else if(sumPs1 > 21 && playerS1.includes(11)) { // .includes checks if 11 is anywhere in array
+                    // Change ace value
+                    let idx = playerS1.indexOf(11); // .indexOf checks the first 11 it comes across
+                    if (idx !== -1) {
+                        playerS1[idx] = 1;
+                        console.log(playerS1);
+
+                        sumPs1 = 0;
+                        for (let i = 0; i < playerS1.length; i++) {
+                            sumPs1 += playerS1[i];
+                        }
+                    }
+                }
+                
+                if(sumPs1 > 21) {
+                    console.log('P1: Bust!', sumPs1);
+                    ps1.innerText = 'P1: Bust! ' + sumPs1;
+
+                    // Run splitSum2
+                    splitSum2();
+
+                } else if(sumPs1 < 21) {
+                    console.log('P1: ', sumPs1);
+                    ps1.innerText = 'P1: ' + sumPs1;
+                }
+            }
+        }
+
+        function splitSum2() {
+
+            splitClicked2 = 0;
+            splitClicked2++
+            sumPs2 = 0;
+
+            if(splitClicked2 > 0) {
+            split.remove();
+            }
+
+            for(let i = 0; i < playerS2.length; i++) {
+
+                sumPs2 += playerS2[i];
+                ps2.innerText = 'P2: ' + sumPs2;
+
+                if(sumPs2 == 21) {
+                    console.log('P2: Blackjack! ',sumPs2);
+                    ps2.innerText = 'P2: Blackjack! ' + sumPs2;
+                    return sumPs2;
+
+                } else if(sumPs2 > 21 && playerS2.includes(11)) { // .includes checks if 11 is anywhere in array
+                    // Change ace value
+                    let idx = playerS2.indexOf(11); // .indexOf checks the first 11 it comes across
+                    if (idx !== -1) {
+                        playerS2[idx] = 1;
+                        console.log(playerS2);
+
+                        sumPs2 = 0;
+                        for (let i = 0; i < playerS2.length; i++) {
+                            sumPs2 += playerS2[i];
+                        }
+                    }
+                }
+                
+                if(sumPs2 > 21) {
+                    ps2.innerText = 'P2: Bust! ' + sumPs2;
+                    hit.remove();
+                    hit1.remove();
+                    stand.remove();
+                    stand1.remove();
+
+                    return sumPs2;
+
+                } else if(sumPs2 < 21) {
+                    console.log('P2: ', sumPs2);
+                    ps2.innerText = 'P2: ' + sumPs2;
+                }
+            }
+        }
 
 
         // Sum of player array
@@ -161,7 +365,7 @@ function deckOfCards() {
                     console.log('Player: '+ sumP);
                     pTotal.innerText = 'Player: '+ sumP;
                 } else if(sumP > 21) {
-                    pTotal.innerText = 'You Lose! '+ sumP;
+                    pTotal.innerText = 'Bust! '+ sumP;
                     hTotal.innerText = 'House Wins!';
                     hit.remove();
                     hit1.remove();
@@ -169,12 +373,128 @@ function deckOfCards() {
                     stand1.remove();
                     console.log('You Lose!', sumP);
                     console.log(player);
+
+                    return;
                 }
             }
         }
         sumPlayer();
         
-        // Sum of house array
+
+        // Sum of house array, compare player splits
+        function sumHouseSplit(sumPs1, sumPs2) {
+            hit.remove();
+            hit1.remove();
+            stand.remove();
+            stand1.remove();
+
+            // sumHouseSplit ends if both hands are over 21 or both blackjack
+            if(sumPs1 > 21 && sumPs2 > 21) {
+                console.log('P1: ',sumPs1, 'P2: ',sumPs2);
+                return;
+
+            } else if (sumPs1 == 21 && sumPs2 == 21) {
+                console.log('P1: ',sumPs1, 'P2: ',sumPs2);
+                return;
+            }
+
+            for(let i = 0; i < house.length; i++) {
+                
+                sumH += house[i];
+                console.log(house);
+
+                if(sumH > 21 && house.includes(11)) { // .includes checks if 11 is anywhere in array
+                    // Change ace value
+                    let idx = house.indexOf(11); // .indexOf checks the first 11 it comes across
+                    if (idx !== -1) {
+                        house[idx] = 1;
+                        console.log(house);
+
+                        sumH = 0;
+                        for (let i = 0; i < house.length; i++) {
+                            sumH += house[i];
+                        }
+                    }
+                }
+
+                // Compare against sumPs1
+                
+                    //* House blackjack
+                if (sumH == 21 && sumPs1 < 21 ) {
+                    hTotal.innerText = 'Blackjack! '+ sumH;
+                    ps1.innerText = 'P1: Lose! ' + sumPs1;
+
+                    //* House hits if sumH < 17 and lower than either sumPs1 or sumPs2
+                } else if (sumH < sumPs1 && i > 0 && sumH < 17 || sumH < sumPs2 && i > 0 && sumH < 17) {
+                    house.push(deck[0]);
+                    deck.shift(0);
+                    console.log('House: ', house);
+                    hTotal.innerText = 'House: '+ sumH;
+
+                    console.log('House: ', sumH, 'Ps1: ', sumPs1, 'Ps2: ', sumPs2);
+                    console.log('House: ', house);
+
+                    //* House busts
+                } else if (sumH > 21 && sumPs1 < 21) {
+                    hTotal.innerText = 'House: Bust! '+ sumH;
+                    ps1.innerText = 'P1: Win! ' + sumPs1;
+
+                    //* Tie
+                } else if (sumH >= 17 && sumH < 21 && sumH == sumPs1) {
+                    console.log('Tie! ', sumPs1);
+                    ps1.innerText = 'P1: Tie! ' + sumPs1;
+
+                    //* House > sumPs1
+                } else if (sumH >= 17 && sumH < 21 && sumH > sumPs1) {
+                    console.log('Lose! ', sumPs1);
+                    hTotal.innerText = 'House: '+ sumH;
+                    ps1.innerText = 'P1: Lose! ' + sumPs1;
+
+                    //* House < sumPs1
+                } else if (sumH >= 17 && sumH < 21 && sumH < sumPs1) {
+                    console.log('Win! ', sumPs1);
+                    hTotal.innerText = 'House: '+ sumH;
+                    ps1.innerText = 'P1: Win! ' + sumPs1;
+                }
+
+                // Compare against sumPs2
+
+                    //* House blackjack
+                if(sumH == 21 && sumPs2 < 21) {
+                    console.log('Lose!');
+                    hTotal.innerText = 'Blackjack! '+ sumH;
+                    ps2.innerText = 'P2: Lose! ' + sumPs2;
+
+                    return;
+                   
+                    //* House busts
+                } else if (sumH > 21 && sumPs2 < 21) {
+                    hTotal.innerText = 'Bust! '+ sumH;
+                    ps2.innerText = 'P2: Win! ' + sumPs2;
+
+                    return;
+
+                    //* Tie
+                } else if (sumH >= 17 && sumH < 21 && sumH == sumPs2) {
+                    console.log('Tie! ', sumPs2);
+                    ps2.innerText = 'P2: Tie! ' + sumPs2;
+
+                    //* House > sumPs2
+                } else if (sumH >= 17 && sumH < 21 && sumH > sumPs2) {
+                    console.log('Lose! ', sumPs2);
+                    hTotal.innerText = 'House: '+ sumH;
+                    ps2.innerText = 'P2: Lose! ' + sumPs2;
+
+                    //* House < sumPs2
+                } else if (sumH >= 17 && sumH < 21 && sumH < sumPs2) {
+                    console.log('Win! ', sumPs2);
+                    hTotal.innerText = 'House: '+ sumH;
+                    ps2.innerText = 'P2: Win! ' + sumPs2;
+                }
+            }
+        }
+
+        // Sum of house array, compare against player
         function sumHouse(sumP) {
             hit.remove();
             hit1.remove();
@@ -185,6 +505,8 @@ function deckOfCards() {
                 
                 sumH += house[i];
                 console.log(house);
+
+                    //* House blackjack
                 if(sumH == 21) {
                     console.log('You Lose!');
                     hTotal.innerText = 'Blackjack! '+ sumH;
@@ -205,8 +527,8 @@ function deckOfCards() {
                     }
                 }
 
-
-                if(sumH == sumP && i > 0) {
+                    //* Tie
+                if(sumH == sumP && i > 0 && sumH >= 17 && sumH < 21 && sumP < 21) {
                     console.log('Tie!');
                     console.log('House: ', house, 'Player: ', player);
                     console.log('House Total: ', sumH, 'Player Total: ', sumP);
@@ -214,7 +536,8 @@ function deckOfCards() {
                     pTotal.innerText = 'Tie! '+ sumP;
                     return;
 
-                } else if(sumH < sumP && i > 0) {
+                    //* House hits if < 17 and < sumP
+                } else if(sumH < sumP && i > 0 && sumH < 17) {
                     house.push(deck[0]);
                     deck.shift(0);
                     console.log('House: ', house);
@@ -223,22 +546,32 @@ function deckOfCards() {
                     console.log('House: ', sumH, 'Player: ', sumP);
                     console.log('House: ', house);
                 
+                    //* Bust
                 } else if(sumH > 21) {
                     hTotal.innerText = 'Bust! '+ sumH;
-                    pTotal.innerText = 'You Win!'+ sumP;
+                    pTotal.innerText = 'You Win! '+ sumP;
 
                     console.log('Bust!', sumH);
                     console.log('House: ', house);
                     return;
 
-                } else if(sumH > sumP) {
+                    //* House > sumP
+                } else if(sumH > sumP && sumH >= 17) {
                     hTotal.innerText = 'House wins! '+ sumH;
-                    pTotal.innerText = 'You Lose!'+ sumP;
+                    pTotal.innerText = 'You Lose! '+ sumP;
 
-                    console.log('House wins!', sumH);
+                    console.log('House wins! ', sumH);
                     console.log(house);
                     return;
 
+                    //* House < sumP
+                } else if(sumH < sumP && sumH >= 17) {
+                    hTotal.innerText = 'House Loses! '+ sumH;
+                    pTotal.innerText = 'You Win! '+ sumP;
+
+                    console.log('House wins! ', sumH);
+                    console.log(house);
+                    return;
                 }
             }
         }
