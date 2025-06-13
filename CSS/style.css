@@ -4,3 +4,14 @@
     width: 7rem;
     height: 12rem;
 }
+
+button {
+    width: 12rem;
+}
+
+/* Blinking background color*/
+@keyframes blink {
+  0%   { background-color: yellow; }
+  50%  { background-color: transparent; }
+  100% { background-color: yellow; }
+}
