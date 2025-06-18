@@ -25,94 +25,95 @@ function deckOfCards() {
 
     // Create image paths of the SVG cards
     let aceImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/ace_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/ace_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/ace_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/ace_of_spades2.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/ace_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/ace_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/ace_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/ace_of_spades2.svg"
     ];
 
     let twoImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/2_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/2_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/2_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/2_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/2_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/2_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/2_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/2_of_spades.svg"
     ];
 
     let threeImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/3_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/3_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/3_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/3_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/3_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/3_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/3_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/3_of_spades.svg"
     ];
+    //TEST
 
     let fourImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/4_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/4_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/4_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/4_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/4_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/4_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/4_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/4_of_spades.svg"
     ];
 
     let fiveImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/5_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/5_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/5_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/5_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/5_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/5_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/5_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/5_of_spades.svg"
     ];
 
     let sixImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/6_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/6_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/6_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/6_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/6_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/6_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/6_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/6_of_spades.svg"
     ];
 
     let sevenImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/7_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/7_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/7_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/7_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/7_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/7_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/7_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/7_of_spades.svg"
     ];
 
     let eightImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/8_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/8_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/8_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/8_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/8_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/8_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/8_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/8_of_spades.svg"
     ];
 
     let nineImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/9_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/9_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/9_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/9_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/9_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/9_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/9_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/9_of_spades.svg"
     ];
 
     let tenImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/10_of_clubs.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/10_of_diamonds.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/10_of_hearts.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/10_of_spades.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/10_of_clubs.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/10_of_diamonds.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/10_of_hearts.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/10_of_spades.svg"
     ];
 
     let jackImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/jack_of_clubs2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/jack_of_diamonds2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/jack_of_hearts2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/jack_of_spades2.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/jack_of_clubs2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/jack_of_diamonds2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/jack_of_hearts2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/jack_of_spades2.svg"
     ];
 
     let queenImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/queen_of_clubs2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/queen_of_diamonds2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/queen_of_hearts2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/queen_of_spades2.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/queen_of_clubs2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/queen_of_diamonds2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/queen_of_hearts2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/queen_of_spades2.svg"
     ];
 
     let kingImagePaths = [
-        "../images/SVG-cards-1.3/SVG-cards-1.3/king_of_clubs2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/king_of_diamonds2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/king_of_hearts2.svg",
-        "../images/SVG-cards-1.3/SVG-cards-1.3/king_of_spades2.svg"
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/king_of_clubs2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/king_of_diamonds2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/king_of_hearts2.svg",
+        "../Images/SVG-cards-1.3/SVG-cards-1.3/king_of_spades2.svg"
     ];
 
     // Shuffle each image array using Durstenfeld shuffle
