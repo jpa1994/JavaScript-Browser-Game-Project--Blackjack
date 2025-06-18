@@ -23,6 +23,135 @@ function deckOfCards() {
     let sumPs1 = 0;
     let sumPs2 = 0;
 
+    // Create image paths of the SVG cards
+    let aceImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/ace_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/ace_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/ace_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/ace_of_spades2.svg"
+    ];
+
+    let twoImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/2_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/2_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/2_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/2_of_spades.svg"
+    ];
+
+    let threeImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/3_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/3_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/3_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/3_of_spades.svg"
+    ];
+
+    let fourImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/4_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/4_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/4_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/4_of_spades.svg"
+    ];
+
+    let fiveImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/5_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/5_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/5_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/5_of_spades.svg"
+    ];
+
+    let sixImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/6_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/6_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/6_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/6_of_spades.svg"
+    ];
+
+    let sevenImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/7_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/7_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/7_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/7_of_spades.svg"
+    ];
+
+    let eightImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/8_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/8_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/8_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/8_of_spades.svg"
+    ];
+
+    let nineImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/9_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/9_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/9_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/9_of_spades.svg"
+    ];
+
+    let tenImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/10_of_clubs.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/10_of_diamonds.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/10_of_hearts.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/10_of_spades.svg"
+    ];
+
+    let jackImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/jack_of_clubs2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/jack_of_diamonds2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/jack_of_hearts2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/jack_of_spades2.svg"
+    ];
+
+    let queenImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/queen_of_clubs2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/queen_of_diamonds2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/queen_of_hearts2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/queen_of_spades2.svg"
+    ];
+
+    let kingImagePaths = [
+        "images/SVG-cards-1.3/SVG-cards-1.3/king_of_clubs2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/king_of_diamonds2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/king_of_hearts2.svg",
+        "images/SVG-cards-1.3/SVG-cards-1.3/king_of_spades2.svg"
+    ];
+
+    // Shuffle each image array using Durstenfeld shuffle
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+    [
+    aceImagePaths, twoImagePaths, threeImagePaths, fourImagePaths,
+    fiveImagePaths, sixImagePaths, sevenImagePaths, eightImagePaths,
+    nineImagePaths, tenImagePaths, jackImagePaths,
+    queenImagePaths, kingImagePaths
+    ].forEach(shuffleArray);
+
+    // Add to deck
+    function addCardsToDeck(imagePaths, value) {
+        imagePaths.forEach(path => {
+        deck.push({ value, image: path });
+    });
+    }
+
+    addCardsToDeck(aceImagePaths, 11);
+    addCardsToDeck(twoImagePaths, 2);
+    addCardsToDeck(threeImagePaths, 3);
+    addCardsToDeck(fourImagePaths, 4);
+    addCardsToDeck(fiveImagePaths, 5);
+    addCardsToDeck(sixImagePaths, 6);
+    addCardsToDeck(sevenImagePaths, 7);
+    addCardsToDeck(eightImagePaths, 8);
+    addCardsToDeck(nineImagePaths, 9);
+    addCardsToDeck(tenImagePaths, 10);
+    addCardsToDeck(jackImagePaths, 10);
+    addCardsToDeck(queenImagePaths, 10);
+    addCardsToDeck(kingImagePaths, 10);
+
+    shuffleArray(deck);
+
     // Call pTotals
     let pTotals = document.querySelector('.pTotals');
 
@@ -34,54 +163,32 @@ function deckOfCards() {
     let pTotal = document.getElementById('pTotal');
     let hTotal = document.getElementById('hTotal');
 
+
+    // Call hCard to append more cards later
+    let houseContainer = document.querySelector(".hCard");
+
+    // Call house row and player row
+    let playerRow = document.querySelector(".playerRow");
+    let houseRow = document.querySelector(".houseRow");
+
+
     // Create separate player total elements for split and append later
     let ps1 = document.createElement("p");
     let ps2 = document.createElement("p");
 
-    let ace = 11;
-    let two = 2;
-    let three = 3;
-    let four = 4;
-    let five = 5;
-    let six = 6;
-    let seven = 7;
-    let eight = 8;
-    let nine = 9;
-    let ten = 10;
-    let jack = 10;
-    let queen = 10;
-    let king = 10;
+    // Call split button to remove later
+    let split = document.getElementById('split');
 
-    for(let i = 0; i < 52; i++) {
-
-        if(i < 4) {
-            deck.push(ace);
-        } else if (i < 8) {
-            deck.push(two);
-        } else if (i < 12) {
-            deck.push(three);
-        } else if (i < 16) {
-            deck.push(four);
-        } else if (i < 20) {
-            deck.push(five);
-        } else if (i < 24) {
-            deck.push(six);
-        } else if (i < 28) {
-            deck.push(seven);
-        } else if (i < 32) {
-            deck.push(eight);
-        } else if (i < 36) {
-            deck.push(nine);
-        } else if (i < 40) {
-            deck.push(ten);
-        } else if (i < 44) {
-            deck.push(jack);
-        } else if (i < 48) {
-            deck.push(queen);
-        } else if (i < 52) {
-            deck.push(king);
-        } 
+    // Add cards to deck
+    function addCardsToDeck(paths, value) {
+    paths.forEach(path => {
+        deck.push({
+            value: value,
+            image: path
+        });
+    });
     }
+
 
     // Shuffle deck of cards using Durstenfeld shuffle
     function shuffle(deck) {
@@ -98,125 +205,188 @@ function deckOfCards() {
     function dealPlayer(deck) {
         console.log(deck);
 
-        // Deal to player
-        for(i = 0; player.length < 2; i++) {
-            player.push(deck[0]);
-            deck.shift(0);
-            console.log('Player:',player);
-            console.log(deck);
+        function appendPlayerCard(card, playerRow) {
+           // debugger
+            // Create new col div
+            let colDiv = document.createElement("div");
+            colDiv.classList.add("col-3", "text-center", "player");
+
+            // Create card container
+            let cardDiv = document.createElement("div");
+            cardDiv.classList.add("pCard");
+
+            // Create img element
+            let img = document.createElement("img");
+            img.src = card.image;
+            img.alt = `Card ${card.value}`;
+            img.classList.add("img-fluid", "pCard");
+
+            // Append col div playerRow
+            playerRow.appendChild(colDiv);
+
+            // Append card div inside col div
+            colDiv.appendChild(cardDiv);
+
+            // Append image inside card div
+            cardDiv.appendChild(img);
+
+        }
+
+        function appendSplitCard(card, splitRow) {
+            // Create the column container
+            let col = document.createElement("div");
+            col.classList.add("col-2", "text-center", "player"); // each card gets its own col-2
+
+            let img = document.createElement("img");
+            img.src = card.image;
+            img.alt = `Card ${card.value}`;
+            img.classList.add("img-fluid", "pCard"); // fluid and styled
+
+            col.appendChild(img);
+            splitRow.appendChild(col);
+        }
+
+        function appendHouseCard(card, houseRow) {
+
+            let colDiv = document.createElement("div");
+            colDiv.classList.add("col-3", "text-center", "house");
+
+            let cardDiv = document.createElement("div");
+            cardDiv.classList.add("hCard");
+
+            let img = document.createElement("img");
+            img.src = card.image;
+            img.alt = `Card ${card.value}`;
+            img.classList.add("img-fluid", "hCard");
+
+            houseRow.appendChild(colDiv);
+            colDiv.appendChild(cardDiv);
+            cardDiv.appendChild(img);
+        }
+
+        // Deal 2 cards to player
+        for (let i = 0; i < 2; i++) {
+            let card = deck.pop();
+            player.push(card);
+
+            appendPlayerCard(card, playerRow)
+        }
+
+        // Deal 2 cards to house
+        for (let i = 0; i < 2; i++) {
+            let card = deck.pop();
+            house.push(card);
+
+            appendHouseCard(card, houseRow);
         }
         
-        // Deal to house
-        function dealToHouse() {
-            for(let i = 0; house.length < 2; i++) {
-                house.push(deck[0]);
-                deck.shift(0);
-                console.log('House:',house);
-                console.log(deck);
-            }
-            hTotal.innerText = 'House: '+ house[0];
-            hTotal.style.textDecoration = "underline";
+        // First player cards don't match, remove split button
+        if (player[0].value !== player[1].value) {
+            split.remove();
         }
-        dealToHouse();
+
+        // Replace second card with back of card
+        let houseCards = houseRow.querySelectorAll("col-3", "col-md-4", ".house img");
+        if (houseCards.length > 1) {
+            houseCards[1].src = "images/SVG-cards-1.3/svg_playing_cards/backs/cars.svg";
+        }
+
+        // Only show first house card
+        hTotal.innerText = 'House: ' + house[0].value;
+        hTotal.style.textDecoration = "underline";
+
 
         // Hit addEventListener button
         let hit = document.getElementById('hit');
 
         hit.addEventListener("click",() => {
-
-            split.remove();
             
+            let card = deck.shift();
+
             if(splitClicked2 > 0) {
+                if (split) split.remove();
 
-                playerS2.push(deck[0]);
-                deck.shift(0);
-                console.log(deck);
-                console.log('Player S1: ', playerS1, 'Player S2: ', playerS2);
-                console.log('spc2: ',splitClicked2);
-
+                playerS2.push(card);
+                let splitRow = document.querySelector(".splitRow");
+                appendSplitCard(card, splitRow);
                 splitSum2();
 
             } else if(splitClicked > 0) {
-                
-                playerS1.push(deck[0]);
-                deck.shift(0);
-                console.log(deck);
-                console.log('Player S1: ', playerS1, 'Player S2: ', playerS2);
+                if (split) split.remove();
+
+                playerS1.push(card);
+                appendPlayerCard(card, playerRow);
 
                 splitSum1();
 
             } else {
-                player.push(deck[0]);
-                deck.shift(0);
+                player.push(card);
                 console.log('Player:',player);
                 console.log(deck);
 
+                appendPlayerCard(card, playerRow);
+
+                if (player.length > 2 && split) {
+                    split.remove();
+                }
 
                 sumPlayer();
+
+                
             }  
         })
 
-        // Split addEventListener button
-        let split = document.getElementById('split');
+        // Split addEventListener Button
+        split.addEventListener("click", () => {
 
-        if(player[0] != player[1]) {
-            split.remove();
-        }
-
-        split.addEventListener("click",() => {
-            
-            splitClicked++
+            splitClicked++;
             console.log('Split Clicked: ', splitClicked);
 
             // Split player cards
             playerS1.push(player[0]);
-            player.shift(0);
+            playerS2.push(player[1]);
 
-            playerS2.push(player[0]);
-            player.shift(0);
+            player.splice(0, 2);
 
-            if(sumPs1 == 0 && playerS1.includes(1)) { // .includes checks if 1 is anywhere in array
-                // Change ace value
-                let idx = playerS1.indexOf(1); // .indexOf checks the first 1 it comes across
-                if (idx !== -1) {
-                    playerS1[idx] = 11;
-                    console.log(playerS1);
+            let splitRow = document.querySelector(".splitRow");
 
-                    sumPs1 = 0;
-                    for (let i = 0; i < playerS1.length; i++) {
-                        sumPs1 += playerS1[i];
-                    }
-                }
+            appendPlayerCard(playerS1[0], playerRow); 
+            appendSplitCard(playerS2[0], splitRow);
+
+            // Convert ace to 11 after split
+            if (playerS1.length == 1) {
+        
+                for (let i = 0; i < playerS1.length; i++) {
+                    let card = playerS1[i];
+
+                    if (card.value == 1) {
+                        card.value = 11; // Change ace to 11
+                    }}
             }
 
-            if(sumPs2 == 0 && playerS2.includes(1)) { // .includes checks if 1 is anywhere in array
-                // Change ace value
-                let idx = playerS2.indexOf(1); // .indexOf checks the first 1 it comes across
-                if (idx !== -1) {
-                    playerS2[idx] = 11;
-                    console.log(playerS2);
+            // Convert ace to 11 after split
+            if (playerS2.length == 1) {
+        
+                for (let i = 0; i < playerS2.length; i++) {
+                let card = playerS2[i];
 
-                    sumPs2 = 0;
-                    for (let i = 0; i < playerS2.length; i++) {
-                        sumPs2 += playerS2[i];
-                    }
-                }
+                if (card.value == 1) {
+                    card.value = 11; // Change ace to 11
+                }}
             }
 
-            console.log('Player S1: ', playerS1, 'Player S2: ', playerS2);
-
-            pTotal.remove();
-
+            console.log('Player S1:', playerS1, 'Sum:', sumPs1);
+            console.log('Player S2:', playerS2, 'Sum:', sumPs2);
 
             pTotals.appendChild(ps1);
             pTotals.appendChild(ps2);
-            
-            ps2.classList.add = 'ms-1';;
-            // pTotals.classList.remove = 'col-6';
-            ps1.innerText = 'P1: '+ playerS1[0];
-            ps2.innerText = 'P2: '+ playerS2[0];
+
+            ps2.classList.add('ms-1');
+            ps1.innerText = 'P1: ' + sumPs1;
+            ps2.innerText = 'P2: ' + sumPs2;
+
             splitSum1();
-        })
+        });
 
         // Stand eventListenerButton
         let stand = document.getElementById('stand');
@@ -224,6 +394,12 @@ function deckOfCards() {
         stand.addEventListener("click",() => {
             //debugger
             split.remove();
+
+            // Show second house card
+            let houseCards = houseRow.querySelectorAll(".col-3 .house img");
+            if (houseCards.length > 1) {
+                houseCards[1].src = house[1].image;
+            }
             
             if(splitClicked2 > 0) {
                 console.log("P1: ",sumPs1,"P2: ", sumPs2);
@@ -242,10 +418,14 @@ function deckOfCards() {
         // Sum of sumPs1 and sumPs2 arrays when split
         function splitSum1() {
             
+            pTotal.style.backgroundColor = "none";
+            pTotal.style.textDecoration = "none";
+            pTotal.style.animation = "none";
+            pTotal.innerText = "";
+
             ps1.style.textDecoration = "underline"
             ps1.style.backgroundColor = "yellow";
             ps1.style.animation = "blink 1s linear infinite";
-
             ps2.style.textDecoration = "underline";
 
             if(splitClicked > 0) {
@@ -256,9 +436,24 @@ function deckOfCards() {
 
             for(let i = 0; i < playerS1.length; i++) {
                 
-                sumPs1 += playerS1[i];
+                sumPs1 += playerS1[i].value;
 
                 ps1.innerText = 'P1: ' + sumPs1;
+
+
+                // Change ace to 1
+                if (sumPs1 > 21 && playerS1.some(card => card.value == 11)) {
+                    let idx = playerS1.findIndex(card => card.value == 11);
+                    if (idx !== -1) {
+                        playerS1[idx].value = 1;
+
+                         // Recalculate sum after Ace adjustment
+                        sumPs1 = 0;
+                        for (let i = 0; i < playerS1.length; i++) {
+                            sumPs1 += playerS1[i].value;
+                        }
+                    }
+                }
 
                 if(sumPs1 == 21) {
                     console.log('P1: You Win!', sumPs1);
@@ -266,22 +461,11 @@ function deckOfCards() {
 
                     ps1.style.animation = "none";
                     ps1.style.backgroundColor = "green";
+                    ps1.style.color = "white";
 
                     // Run splitSum2
                     splitSum2();
 
-                } else if(sumPs1 > 21 && playerS1.includes(11)) { // .includes checks if 11 is anywhere in array
-                    // Change ace value
-                    let idx = playerS1.indexOf(11); // .indexOf checks the first 11 it comes across
-                    if (idx !== -1) {
-                        playerS1[idx] = 1;
-                        console.log(playerS1);
-
-                        sumPs1 = 0;
-                        for (let i = 0; i < playerS1.length; i++) {
-                            sumPs1 += playerS1[i];
-                        }
-                    }
                 }
                 
                 if(sumPs1 > 21) {
@@ -290,6 +474,7 @@ function deckOfCards() {
 
                     ps1.style.animation = "none";
                     ps1.style.backgroundColor = "red";
+                    ps1.style.color = "white";
 
                     // Run splitSum2
                     splitSum2();
@@ -302,6 +487,8 @@ function deckOfCards() {
         }
 
         function splitSum2() {
+
+            ps1.style.animation = "none";
 
             ps2.style.backgroundColor = "yellow";
             ps2.style.animation = "blink 1s linear infinite";
@@ -316,7 +503,7 @@ function deckOfCards() {
 
             for(let i = 0; i < playerS2.length; i++) {
 
-                sumPs2 += playerS2[i];
+                sumPs2 += playerS2[i].value;
                 ps2.innerText = 'P2: ' + sumPs2;
 
                 if(sumPs2 == 21) {
@@ -324,19 +511,22 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Blackjack! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "green";
+                    ps2.style.color = "white";
 
                     sumHouseSplit(sumPs1, sumPs2);
 
-                } else if(sumPs2 > 21 && playerS2.includes(11)) { // .includes checks if 11 is anywhere in array
-                    // Change ace value
-                    let idx = playerS2.indexOf(11); // .indexOf checks the first 11 it comes across
+                }
+                
+                // Change ace to 1
+                if (sumPs2 > 21 && playerS2.some(card => card.value == 11)) {
+                    let idx = playerS2.findIndex(card => card.value == 11);
                     if (idx !== -1) {
-                        playerS2[idx] = 1;
-                        console.log(playerS2);
+                        playerS2[idx].value = 1;
 
+                         // Re-add sumPs2
                         sumPs2 = 0;
                         for (let i = 0; i < playerS2.length; i++) {
-                            sumPs2 += playerS2[i];
+                            sumPs2 += playerS2[i].value;
                         }
                     }
                 }
@@ -345,6 +535,7 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Bust! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "red";
+                    ps2.style.color = "white";
                     hit.remove();
                     hit1.remove();
                     stand.remove();
@@ -372,7 +563,7 @@ function deckOfCards() {
             
             for(let i = 0; i < player.length; i++) {
                 
-                sumP += player[i];
+                sumP += player[i].value;
                 if(sumP == 21) {
                     hit.remove();
                     stand.remove();
@@ -381,19 +572,23 @@ function deckOfCards() {
                     pTotal.innerText = 'Blackjack! '+ sumP;
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "green";
+                    pTotal.style.color = "white";
                     
                     return sumP;
 
-                } else if(sumP > 21 && player.includes(11)) { // .includes checks if 11 is anywhere in array
-                    // Change ace value
-                    let idx = player.indexOf(11); // .indexOf checks the first 11 it comes across
+                }
+                
+                // Change ace 11 to 1
+                if (sumP > 21 && player.some(card => card.value == 11)) {
+                    let idx = player.findIndex(card => card.value == 11);
+
                     if (idx !== -1) {
-                        player[idx] = 1;
+                        player[idx].value = 1; 
                         console.log(player);
 
                         sumP = 0;
                         for (let i = 0; i < player.length; i++) {
-                            sumP += player[i];
+                        sumP += player[i].value;
                         }
                     }
                 }
@@ -406,6 +601,7 @@ function deckOfCards() {
                     pTotal.innerText = 'Bust! '+ sumP;
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "red";
+                    pTotal.style.color = "white";
 
                     hTotal.innerText = 'House Wins!';
 
@@ -431,50 +627,63 @@ function deckOfCards() {
             stand.remove();
             stand1.remove();
 
+            let sumH = 0;
+
             // Colors for sumPs1 and sumPs2 for over 21 or blackjack
             if(sumPs1 > 21) {
                 ps1.style.animation = "none";
                 ps1.style.backgroundColor = "red";
+                ps1.style.color = "white";
             } else if (sumPs1 == 21) {
                 ps1.style.animation = "none";
                 ps1.style.backgroundColor = "green";
+                ps1.style.color = "white";
             }
 
             if(sumPs2 > 21) {
                 ps2.style.animation = "none";
                 ps2.style.backgroundColor = "red";
-            } else if (sumPs1 == 21) {
+                ps2.style.color = "white";
+            } else if (sumPs2 == 21) {
                 ps2.style.animation = "none";
                 ps2.style.backgroundColor = "green";
+                ps2.style.color = "white";
             }
 
             // sumHouseSplit ends if both hands are over 21 or both blackjack
-            if(sumPs1 > 21 && sumPs2 > 21) {
-                console.log('P1: ',sumPs1, 'P2: ',sumPs2);
+            if ((sumPs1 > 21 && sumPs2 > 21) || (sumPs1 === 21 && sumPs2 === 21)) {
+                console.log('P1:', sumPs1, 'P2:', sumPs2);
                 return;
+            }
 
-            } else if (sumPs1 == 21 && sumPs2 == 21) {
-                console.log('P1: ',sumPs1, 'P2: ',sumPs2);
-                return;
+            // Show second house card
+            let houseCards = houseRow.querySelectorAll("col-3 .house img");
+            if (houseCards.length > 1) {
+                houseCards[1].src = house[1].image;
             }
 
             for(let i = 0; i < house.length; i++) {
                 
-                sumH += house[i];
+                sumH += house[i].value;
                 console.log(house);
 
-                if(sumH > 21 && house.includes(11)) { // .includes checks if 11 is anywhere in array
-                    // Change ace value
-                    let idx = house.indexOf(11); // .indexOf checks the first 11 it comes across
-                    if (idx !== -1) {
-                        house[idx] = 1;
-                        console.log(house);
-
-                        sumH = 0;
+                if (sumH > 21 && house.some(card => card.value == 11)) {
+                    let idx = house.findIndex(card => card.value == 11);
+                        if (idx !== -1) {
+                            house[idx].value = 1;
+                            sumH = 0;
                         for (let i = 0; i < house.length; i++) {
-                            sumH += house[i];
+                            sumH += house[i].value;
                         }
                     }
+                }
+
+                    //* House hits if sumH < 17 and lower than either sumPs1 or sumPs2
+                if (sumH < 17 && ((sumPs1 < 21 && sumPs1 > sumH) || (sumPs2 < 21 && sumPs2 > sumH))) {
+                            house.push(deck.shift());
+                            let newCard = house[house.length - 1];
+                            appendHouseCard(newCard, houseRow);
+    
                 }
 
                 // Compare against sumPs1
@@ -486,17 +695,8 @@ function deckOfCards() {
                     ps1.innerText = 'P1: Lose! ' + sumPs1;
                     ps1.style.animation = "none";
                     ps1.style.backgroundColor = "red";
+                    ps1.style.color = "white";
 
-
-                    //* House hits if sumH < 17 and lower than either sumPs1 or sumPs2
-                } else if (sumH < sumPs1 && i > 0 && sumH < 17 || sumH < sumPs2 && i > 0 && sumH < 17) {
-                    house.push(deck[0]);
-                    deck.shift(0);
-                    console.log('House: ', house);
-                    hTotal.innerText = 'House: '+ sumH;
-
-                    console.log('House: ', sumH, 'Ps1: ', sumPs1, 'Ps2: ', sumPs2);
-                    console.log('House: ', house);
 
                     //* House busts
                 } else if (sumH > 21 && sumPs1 < 21) {
@@ -505,6 +705,7 @@ function deckOfCards() {
                     ps1.innerText = 'P1: Win! ' + sumPs1;
                     ps1.style.animation = "none";
                     ps1.style.backgroundColor = "green";
+                    ps1.style.color = "white";
 
                     //* Tie
                 } else if (sumH >= 17 && sumH < 21 && sumH == sumPs1) {
@@ -522,6 +723,7 @@ function deckOfCards() {
                     ps1.innerText = 'P1: Lose! ' + sumPs1;
                     ps1.style.animation = "none";
                     ps1.style.backgroundColor = "red";
+                    ps1.style.color = "white";
 
                     //* House < sumPs1
                 } else if (sumH >= 17 && sumH < 21 && sumH < sumPs1) {
@@ -531,6 +733,7 @@ function deckOfCards() {
                     ps1.innerText = 'P1: Win! ' + sumPs1;
                     ps1.style.animation = "none";
                     ps1.style.backgroundColor = "green";
+                    ps1.style.color = "white";
                 }
 
                 // Compare against sumPs2
@@ -543,6 +746,7 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Lose! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "red";
+                    ps2.style.color = "white";
 
                     return;
                    
@@ -553,6 +757,7 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Win! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "green";
+                    ps2.style.color = "white";
 
                     return;
 
@@ -572,6 +777,7 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Lose! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "red";
+                    ps2.style.color = "white";
 
                     //* House < sumPs2
                 } else if (sumH >= 17 && sumH < 21 && sumH < sumPs2) {
@@ -581,6 +787,7 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Win! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "green";
+                    ps2.style.color = "white";
                 }
             }
         }
@@ -592,34 +799,14 @@ function deckOfCards() {
             stand.remove();
             stand1.remove();
 
+            sumH = 0;
+
             for(let i = 0; i < house.length; i++) {
                 
-                sumH += house[i];
+                sumH += house[i].value;
                 console.log(house);
 
-                    //* House blackjack
-                if(sumH == 21 && sumP < 21) {
-                    console.log('You Lose!');
-                    pTotal.style.animation = "none";
-                    pTotal.style.backgroundColor = "red";
-
-                    hTotal.innerText = 'Blackjack! '+ sumH;
                     
-                    return sumH;
-
-                } else if(sumH > 21 && house.includes(11)) { // .includes checks if 11 is anywhere in array
-                    // Change ace value
-                    let idx = house.indexOf(11); // .indexOf checks the first 11 it comes across
-                    if (idx !== -1) {
-                        house[idx] = 1;
-                        console.log(house);
-
-                        sumH = 0;
-                        for (let i = 0; i < house.length; i++) {
-                            sumH += house[i];
-                        }
-                    }
-                }
 
                     //* Tie
                 if(sumH == sumP && i > 0 && sumH >= 17 && sumH < 21 && sumP < 21) {
@@ -635,24 +822,63 @@ function deckOfCards() {
                     pTotal.innerText = 'Tie! '+ sumP;
 
                     return;
+                }
 
                     //* House hits if < 17 and < sumP
-                } else if(sumH < sumP && i > 0 && sumH < 17) {
-                    house.push(deck[0]);
-                    deck.shift(0);
+                if(sumH < sumP && i > 0 && sumH < 17) {
+
+                    let newCard = deck.shift();
+                    house.push(newCard); 
+                          
+                    sumH += newCard.value;
                     console.log('House: ', house);
                     hTotal.innerText = 'House: '+ sumH;
 
                     console.log('House: ', sumH, 'Player: ', sumP);
                     console.log('House: ', house);
+
+                       
+
+                    appendHouseCard(newCard, houseRow);
+
+                }
+
+                //* House blackjack
+                if(sumH == 21 && sumP < 21) {
+                    console.log('You Lose!');
+                    pTotal.style.animation = "none";
+                    pTotal.style.backgroundColor = "red";
+                    pTotal.style.color = "white";
+
+                    hTotal.innerText = 'Blackjack! '+ sumH;
+                    
+                    return sumH;
+
+                }
+
+                // Change ace 11 to 1
+                if (sumH > 21 && house.some(card => card.value == 11)) {
+                    let idx = house.findIndex(card => card.value == 11);
+
+                    if (idx !== -1) {
+                        house[idx].value = 1; 
+                        console.log(house);
+
+                        sumH = 0;
+                        for (let i = 0; i < house.length; i++) {
+                        sumH += house[i].value;
+                        }
+                    }
+                }
                 
                     //* Bust
-                } else if(sumH > 21) {
+                if(sumH > 21) {
                     hTotal.innerText = 'Bust! '+ sumH;
 
                     pTotal.innerText = 'You Win! '+ sumP;
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "green";
+                    pTotal.style.color = "white";
 
                     console.log('Bust!', sumH);
                     console.log('House: ', house);
@@ -665,6 +891,7 @@ function deckOfCards() {
                     pTotal.innerText = 'You Lose! '+ sumP;
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "red";
+                    pTotal.style.color = "white";
 
                     console.log('House wins! ', sumH);
                     console.log(house);
@@ -677,6 +904,7 @@ function deckOfCards() {
                     pTotal.innerText = 'You Win! '+ sumP;
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "green";
+                    pTotal.style.color = "white";
 
                     console.log('House wins! ', sumH);
                     console.log(house);
