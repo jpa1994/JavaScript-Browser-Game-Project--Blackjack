@@ -289,7 +289,7 @@ function deckOfCards() {
         // Replace second card with back of card
         let houseCards = houseRow.querySelectorAll("col-3", "col-md-4", ".house img");
         if (houseCards.length > 1) {
-            houseCards[1].src = "images/SVG-cards-1.3/svg_playing_cards/backs/cars.svg";
+            houseCards[1].src = "../Images/SVG-cards-1.3/svg_playing_cards/cars.svg";
         }
 
         // Only show first house card
