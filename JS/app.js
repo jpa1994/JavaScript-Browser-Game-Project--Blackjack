@@ -208,6 +208,7 @@ function deckOfCards() {
 
         function appendPlayerCard(card, playerRow) {
            // debugger
+           console.log();
             // Create new col div
             let colDiv = document.createElement("div");
             colDiv.classList.add("col-3", "text-center", "player");
@@ -236,7 +237,7 @@ function deckOfCards() {
         function appendSplitCard(card, splitRow) {
             // Create the column container
             let col = document.createElement("div");
-            col.classList.add("col-2", "text-center", "player"); // each card gets its own col-2
+            col.classList.add("col-3", "text-center", "player"); // each card gets its own col-3
 
             let img = document.createElement("img");
             img.src = card.image;
