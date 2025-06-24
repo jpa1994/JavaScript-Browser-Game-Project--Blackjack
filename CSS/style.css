@@ -1,5 +1,23 @@
 button {
     width: 12rem;
+    height: 3rem;
+    border-radius: 10px !important;
+}
+
+button:hover {
+    background-color: #fff201;
+}
+
+#hit:hover {
+  background-color: rgb(112, 255, 143);
+}
+
+#stand:hover {
+  background-color: rgb(167, 246, 255);
+}
+
+#split:hover {
+  background-color: #dca3ff;
 }
 
 /* Blinking background color*/

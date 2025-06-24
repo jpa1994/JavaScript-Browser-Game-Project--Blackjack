@@ -23,22 +23,6 @@ function deckOfCards() {
     let sumPs1 = 0;
     let sumPs2 = 0;
 
-    // Audio button for background music
-    let musicButton = document.querySelector(".backgroundMusic");
-
-    // Audio sources
-    let mainMusic = new Audio("./MUSIC/GT5_background.mp3"); 
-    let failMusic = new Audio("./MUSIC/Failure.mp3");
-    let winMusic = new Audio("./MUSIC/GT2_Gold_Rush.mp3");  
-    let tieMusic = new Audio("./MUSIC/TT_tie.mp3"); 
-    let startupMusic = new Audio("./MUSIC/GT4_startup.mp3"); // may or may not use this sound file
-    let standMusic = new Audio ("./MUSIC/Select.mp3");
-
-    // Click for music
-    musicButton.addEventListener("click",() => {
-        mainMusic.loop = true;
-        mainMusic.play().catch(err => console.log("Audio play error:", err));
-    })
 
     // Create image paths of the SVG cards
     let aceImagePaths = [
@@ -292,7 +276,7 @@ function deckOfCards() {
             let card = deck.pop();
             player.push(card);
 
-            appendPlayerCard(card, playerRow)
+            appendPlayerCard(card, playerRow);
         }
 
         // Deal 2 cards to house
@@ -334,6 +318,8 @@ function deckOfCards() {
             if(splitClicked2 > 0) {
                 if (split) split.remove();
 
+                startupMusic.loop = false;
+                startupMusic.play().catch(err => console.log("Audio play error:", err));
                 playerS2.push(card);
                 let splitRow = document.querySelector(".splitRow");
                 appendSplitCard(card, splitRow);
@@ -342,6 +328,8 @@ function deckOfCards() {
             } else if(splitClicked > 0) {
                 if (split) split.remove();
 
+                startupMusic.loop = false;
+                startupMusic.play().catch(err => console.log("Audio play error:", err));
                 playerS1.push(card);
                 appendPlayerCard(card, playerRow);
 
@@ -351,6 +339,8 @@ function deckOfCards() {
                 player.push(card);
                 console.log('Player:',player);
                 console.log(deck);
+                startupMusic.loop = false;
+                startupMusic.play().catch(err => console.log("Audio play error:", err));
 
                 appendPlayerCard(card, playerRow);
 
@@ -367,6 +357,7 @@ function deckOfCards() {
         // Split addEventListener Button
         split.addEventListener("click", () => {
 
+            standMusic.play().catch(err => console.log("Audio play error:", err));
             splitClicked++;
             console.log('Split Clicked: ', splitClicked);
 
@@ -614,6 +605,9 @@ function deckOfCards() {
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "green";
                     pTotal.style.color = "white";
+
+                    mainMusic.pause();
+                    winMusic.play().catch(err => console.error("Audio play error:", err));
                     
                     return sumP;
 
@@ -645,6 +639,12 @@ function deckOfCards() {
                     pTotal.style.color = "white";
 
                     hTotal.innerText = 'House Wins!';
+
+                    // Fail audio
+                    startupMusic.pause(); //* Pause startup music
+                    mainMusic.pause();
+
+                    failMusic.play().catch(err => console.error("Audio play error:", err));
 
                     hit.remove();
                     hit1.remove();
@@ -692,8 +692,18 @@ function deckOfCards() {
             }
 
             // sumHouseSplit ends if both hands are over 21 or both blackjack
-            if ((sumPs1 > 21 && sumPs2 > 21) || (sumPs1 === 21 && sumPs2 === 21)) {
+            if (sumPs1 > 21 && sumPs2 > 21) {
                 console.log('P1:', sumPs1, 'P2:', sumPs2);
+                mainMusic.pause();
+                startupMusic.pause();
+                failMusic.play().catch(err => console.error("Audio play error:", err));
+                return;
+            }
+
+            if (sumPs1 == 21 && sumPs2 == 21) {
+                mainMusic.pause();
+                startupMusic.pause();
+                winMusic.play().catch(err => console.error("Audio play error:", err));
                 return;
             }
 
@@ -796,6 +806,17 @@ function deckOfCards() {
                     ps2.style.backgroundColor = "red";
                     ps2.style.color = "white";
 
+                    // Tie music
+                    if (
+                        (sumPs1 < 22 && sumPs1 > sumH && (sumPs2 > 21 || sumPs2 < sumH)) ||
+                        (sumPs2 < 22 && sumPs2 > sumH && (sumPs1 > 21 || sumPs1 < sumH))
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            tieMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+
                     return;
                  
                     //* To prevent bust message from changing
@@ -814,6 +835,15 @@ function deckOfCards() {
                     ps2.style.backgroundColor = "green";
                     ps2.style.color = "white";
 
+                    // Win music
+                    if (
+                        (sumPs1 <= 21 && sumPs2 <= 21)
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            winMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
                     return;
 
                     //* Tie
@@ -823,6 +853,31 @@ function deckOfCards() {
                     ps2.innerText = 'P2: Tie! ' + sumPs2;
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "lightblue";
+
+                    if (
+                        (sumPs1 < 22 && sumPs1 > sumH && (sumPs2 == sumH)) ||
+                        (sumPs1 < sumH && (sumPs2 == sumH))
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            tieSplitMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+                    if (
+                        (sumPs1 > 21 && (sumPs2 == sumH))
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            failMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+                    if (
+                        (sumPs1 == sumH && (sumPs2 == sumH))
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            tieSplitMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
 
                     //* House > sumPs2
                 } else if (sumH >= 17 && sumH < 21 && sumH > sumPs2) {
@@ -834,6 +889,24 @@ function deckOfCards() {
                     ps2.style.backgroundColor = "red";
                     ps2.style.color = "white";
 
+                    if (
+                        (sumPs1 < 22 && sumPs1 > sumH && (sumPs2 > 21 || sumPs2 < sumH)) ||
+                        (sumPs2 < 22 && sumPs2 > sumH && (sumPs1 > 21 || sumPs1 < sumH))
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            tieSplitMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+                    if (
+                        (sumPs1 < sumH && sumPs2 < sumH)
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            winMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+
                     //* House < sumPs2
                 } else if (sumH >= 17 && sumH < 21 && sumH < sumPs2) {
                     console.log('Win! ', sumPs2);
@@ -843,6 +916,31 @@ function deckOfCards() {
                     ps2.style.animation = "none";
                     ps2.style.backgroundColor = "green";
                     ps2.style.color = "white";
+
+                    if (
+                        (sumPs1 < 22 && sumPs1 > sumH && (sumPs2 > 21 || sumPs2 < sumH)) ||
+                        (sumPs2 < 22 && sumPs2 > sumH && (sumPs1 > 21 || sumPs1 < sumH))
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            tieSplitMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+                    if (
+                        (sumPs1 > sumH && sumPs2 > sumH)
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            winMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
+
+                    if (
+                        (sumPs1 > sumH && sumPs2 > sumH)
+                        ) {
+                            mainMusic.pause();
+                            startupMusic.pause();
+                            winMusic.play().catch(err => console.error("Audio play error:", err));
+                        }
                 }
             }
         }
@@ -876,6 +974,10 @@ function deckOfCards() {
                     pTotal.style.backgroundColor = "lightblue";
                     pTotal.innerText = 'Tie! '+ sumP;
 
+                    mainMusic.pause();
+                    startupMusic.pause();
+                    tieMusic.play().catch(err => console.error("Audio play error:", err));
+
                     return;
                 }
 
@@ -906,6 +1008,11 @@ function deckOfCards() {
                     pTotal.style.color = "white";
 
                     hTotal.innerText = 'Blackjack! '+ sumH;
+
+                    // Fail audio
+                    startupMusic.pause(); //* Pause startup music
+                    mainMusic.pause();
+                    failMusic.play().catch(err => console.error("Audio play error:", err));
                     
                     return sumH;
 
@@ -935,12 +1042,12 @@ function deckOfCards() {
                     pTotal.style.backgroundColor = "green";
                     pTotal.style.color = "white";
 
-                    // Fail audio
-                    failMusic.loop = false;
-                    failMusic.play().catch(err => console.log("Audio play error:", err));
-
                     console.log('Bust!', sumH);
                     console.log('House: ', house);
+
+                    mainMusic.pause();
+                    startupMusic.pause();
+                    winMusic.play().catch(err => console.error("Audio play error:", err));
                     return;
 
                     //* House > sumP
@@ -954,6 +1061,9 @@ function deckOfCards() {
 
                     console.log('House wins! ', sumH);
                     console.log(house);
+
+                    mainMusic.pause();
+                    failMusic.play().catch(err => console.log("Audio play error:", err));
                     return;
 
                     //* House < sumP
@@ -967,6 +1077,9 @@ function deckOfCards() {
 
                     console.log('House wins! ', sumH);
                     console.log(house);
+                    mainMusic.pause();
+                    startupMusic.pause();
+                    winMusic.play().catch(err => console.error("Audio play error:", err));
                     return;
                 }
             }
@@ -974,4 +1087,22 @@ function deckOfCards() {
     }
     dealPlayer(deck);
 }
-deckOfCards();
+// Audio button for background music
+let musicButton = document.querySelector(".backgroundMusic");
+
+// Click for music and start game
+musicButton.addEventListener("click",() => {
+    // Audio sources
+    mainMusic = new Audio("./MUSIC/GT5_background.mp3");
+    failMusic = new Audio("./MUSIC/Failure.mp3");
+    winMusic = new Audio("./MUSIC/GT2_Gold_Rush.mp3");
+    tieMusic = new Audio("./MUSIC/TT_tie.mp3");
+    tieSplitMusic = new Audio("./MUSIC/GT5_splitTie_splitBrkEven.mp3");
+    startupMusic = new Audio("./MUSIC/GT4_startup.mp3");
+    standMusic = new Audio("./MUSIC/Select.mp3");
+
+    mainMusic.loop = true;
+    mainMusic.play().catch(err => console.log("Audio play error:", err));
+    musicButton.remove();
+    deckOfCards();
+})
