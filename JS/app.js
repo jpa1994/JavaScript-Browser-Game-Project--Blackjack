@@ -32,10 +32,11 @@ function deckOfCards() {
     let winMusic = new Audio("./MUSIC/GT2_Gold_Rush.mp3");  
     let tieMusic = new Audio("./MUSIC/TT_tie.mp3"); 
     let startupMusic = new Audio("./MUSIC/GT4_startup.mp3"); // may or may not use this sound file
+    let standMusic = new Audio ("./MUSIC/Select.mp3");
 
     // Click for music
     musicButton.addEventListener("click",() => {
-        mainMusic.loop = true; // Optional: loop background music
+        mainMusic.loop = true;
         mainMusic.play().catch(err => console.log("Audio play error:", err));
     })
 
@@ -326,6 +327,10 @@ function deckOfCards() {
             
             let card = deck.shift();
 
+            // Click audio
+            startupMusic.loop = false;
+            startupMusic.play().catch(err => console.log("Audio play error:", err));
+
             if(splitClicked2 > 0) {
                 if (split) split.remove();
 
@@ -424,6 +429,10 @@ function deckOfCards() {
 
         stand.addEventListener("click",() => {
             //debugger
+            // Stand jingle
+            standMusic.loop = false;
+            standMusic.play().catch(err => console.log("Audio play error:", err));
+
             split.remove();
 
 
@@ -925,6 +934,10 @@ function deckOfCards() {
                     pTotal.style.animation = "none";
                     pTotal.style.backgroundColor = "green";
                     pTotal.style.color = "white";
+
+                    // Fail audio
+                    failMusic.loop = false;
+                    failMusic.play().catch(err => console.log("Audio play error:", err));
 
                     console.log('Bust!', sumH);
                     console.log('House: ', house);
