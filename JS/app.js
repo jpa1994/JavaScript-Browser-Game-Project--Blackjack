@@ -23,6 +23,22 @@ function deckOfCards() {
     let sumPs1 = 0;
     let sumPs2 = 0;
 
+    // Audio button for background music
+    let musicButton = document.querySelector(".backgroundMusic");
+
+    // Audio sources
+    let mainMusic = new Audio("./MUSIC/GT5_background.mp3"); 
+    let failMusic = new Audio("./MUSIC/Failure.mp3");
+    let winMusic = new Audio("./MUSIC/GT2_Gold_Rush.mp3");  
+    let tieMusic = new Audio("./MUSIC/TT_tie.mp3"); 
+    let startupMusic = new Audio("./MUSIC/GT4_startup.mp3"); // may or may not use this sound file
+
+    // Click for music
+    musicButton.addEventListener("click",() => {
+        mainMusic.loop = true; // Optional: loop background music
+        mainMusic.play().catch(err => console.log("Audio play error:", err));
+    })
+
     // Create image paths of the SVG cards
     let aceImagePaths = [
         "./Images/SVG-cards-1.3/ace_of_clubs.svg",
