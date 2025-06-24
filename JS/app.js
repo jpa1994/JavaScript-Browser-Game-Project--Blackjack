@@ -165,13 +165,13 @@ function deckOfCards() {
     let hTotal = document.getElementById('hTotal');
 
 
-    // Call hCard to append more cards later
+    // Call hCard to append more cards later (if needed to do so)
     let houseContainer = document.querySelector(".hCard");
 
     // Call house row and player row
     let playerRow = document.querySelector(".playerRow");
     let houseRow = document.querySelector(".houseRow");
-
+    
 
     // Create separate player total elements for split and append later
     let ps1 = document.createElement("p");
@@ -211,7 +211,11 @@ function deckOfCards() {
            console.log();
             // Create new col div
             let colDiv = document.createElement("div");
-            colDiv.classList.add("col-3", "text-center", "player");
+            if(splitClicked > 0) {
+                colDiv.classList.add("col-3", "text-center", "playerSplit");
+            } else {
+                colDiv.classList.add("col-3", "text-center", "player");
+            }
 
             // Create card container
             let cardDiv = document.createElement("div");
@@ -237,7 +241,7 @@ function deckOfCards() {
         function appendSplitCard(card, splitRow) {
             // Create the column container
             let col = document.createElement("div");
-            col.classList.add("col-3", "text-center", "player"); // each card gets its own col-3
+            col.classList.add("col-3", "text-center", "playerSplits"); // each card gets its own col-3
 
             let img = document.createElement("img");
             img.src = card.image;
@@ -281,16 +285,17 @@ function deckOfCards() {
 
             appendHouseCard(card, houseRow);
         }
+
+        // Replace second card with back of card
+        let houseCards = houseRow.querySelectorAll(".house img");
+        if (houseCards.length > 1) {
+            houseCards[1].src = "./Images/svg_playing_cards/cars.svg";
+        }
+        console.log('House cards found:', houseCards);
         
         // First player cards don't match, remove split button
         if (player[0].value !== player[1].value) {
             split.remove();
-        }
-
-        // Replace second card with back of card
-        let houseCards = houseRow.querySelectorAll("col-3", "col-md-4", ".house img");
-        if (houseCards.length > 1) {
-            houseCards[1].src = "../Images/SVG-cards-1.3/svg_playing_cards/cars.svg";
         }
 
         // Only show first house card
@@ -355,6 +360,14 @@ function deckOfCards() {
             appendPlayerCard(playerS1[0], playerRow); 
             appendSplitCard(playerS2[0], splitRow);
 
+            // Remove cards from normal hand
+            let playerStd = document.querySelectorAll(".player");
+            for (let i = 0; i < playerStd.length; i++) {
+            let el = playerStd[i];
+            el.remove();
+}
+            
+
             // Convert ace to 11 after split
             if (playerS1.length == 1) {
         
@@ -397,8 +410,9 @@ function deckOfCards() {
             //debugger
             split.remove();
 
+
             // Show second house card
-            let houseCards = houseRow.querySelectorAll(".col-3 .house img");
+            let houseCards = houseRow.querySelectorAll(".house img");
             if (houseCards.length > 1) {
                 houseCards[1].src = house[1].image;
             }
@@ -699,6 +713,13 @@ function deckOfCards() {
                     ps1.style.backgroundColor = "red";
                     ps1.style.color = "white";
 
+                    //* To prevent bust message from changing
+                } else if(sumPs1 > 21) {
+                    ps1.innerText = 'P1: Bust! ' + sumPs1;
+                    ps1.style.animation = "none";
+                    ps1.style.backgroundColor = "red";
+                    ps1.style.color = "white";
+
 
                     //* House busts
                 } else if (sumH > 21 && sumPs1 < 21) {
@@ -751,7 +772,14 @@ function deckOfCards() {
                     ps2.style.color = "white";
 
                     return;
-                   
+                 
+                    //* To prevent bust message from changing
+                } else if(sumPs2 > 21) {
+                    ps2.innerText = 'P2: Bust! ' + sumPs2;
+                    ps2.style.animation = "none";
+                    ps2.style.backgroundColor = "red";
+                    ps2.style.color = "white";
+
                     //* House busts
                 } else if (sumH > 21 && sumPs2 < 21) {
                     hTotal.innerText = 'Bust! '+ sumH;
